@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Editor</title>
+    
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h1>Browser Video Editor</h1>
-  
-  <input type="file" id="uploader" accept="video/*, image/*" multiple>
-  
-  <div id="preview-container">
-    <video id="player" controls width="400"></video>
-  </div>
 
-  <button id="export-btn">Generate & Export Video</button>
+    <section id="home-page">
+        <h1>Online Video Generator</h1>
+        <p>Upload your media to begin.</p>
+        <button onclick="showEditor()">Start Editing</button>
+    </section>
 
-  <script src="script.js"></script>
+    <section id="editor-page" style="display:none;">
+        <input type="file" id="uploader" accept="video/*, image/*" multiple>
+        
+        <div class="preview-box">
+            <video id="player" controls width="100%"></video>
+            <p id="status">Status: Waiting for files...</p>
+        </div>
+
+        <div class="controls">
+            <button id="export-btn">Generate & Export MP4</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
