@@ -1,18 +1,24 @@
-const uploader = document.getElementById('uploader');
-const player = document.getElementById('player');
+// Function to switch "Pages"
+function showEditor() {
+    document.getElementById('home-page').style.display = 'none';
+    document.getElementById('editor-page').style.display = 'block';
+}
 
-uploader.addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    // Create a temporary URL for the uploaded file
-    const url = URL.createObjectURL(file);
+// FFmpeg Setup
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ log: true });
+
+const exportBtn = document.getElementById('export-btn');
+const status = document.getElementById('status');
+
+exportBtn.onclick = async () => {
+    status.innerText = "Loading FFmpeg engine...";
+    await ffmpeg.load();
     
-    // Set it to the player so the user can see a "Preview"
-    player.src = url;
-    console.log("File loaded for preview!");
-  }
-});
-
-document.getElementById('export-btn').addEventListener('click', () => {
-    alert("To export, you will need to integrate FFmpeg.wasm in the next step!");
-});
+    status.innerText = "Processing Video... please wait.";
+    
+    // This is where the magic happens (merging/generating)
+    // For now, this just confirms the engine is ready
+    status.innerText = "Engine Ready! (Next: Define your render logic)";
+};
+  
